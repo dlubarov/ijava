@@ -1,0 +1,54 @@
+=============================
+ III   JJJ   A   V   V   A   
+  I     J   A A  V   V  A A  
+  I     J  AAAAA V   V AAAAA 
+  I  J  J  A   A  V V  A   A 
+ III  JJ   A   A   V   A   A 
+=============================
+          by Daniel G Lubarov
+           daniel@lubarov.com
+
+This REPL evaluates Java expressions interactively. To compile, just do
+    javac ijava.java
+
+
+===========================================
+ EEEEE X   X   A   M   M PPPP  L     EEEEE
+ E      X X   A A  MM MM P   P L     E    
+ EEEE    X   AAAAA M M M PPPP  L     EEEE 
+ E      X X  A   A M   M P     L     E    
+ EEEEE X   X A   A M   M P     LLLLL EEEEE
+===========================================
+
+ +-----------------------------------------+
+ | C:\Users\daniel>ijava                   |
+ | >>> 2 + 3                               |
+ | 5                                       |
+ | >>> Math.cos(Math.PI)                   |
+ | -1.0                                    |
+ | >>> Integer.MIN_VALUE * -1 // underflow |
+ | -2147483648                             |
+ | >>> new Integer(42).hashCode()          |
+ | 42                                      |
+ | >>> System.getProperty("java.vm.name")  |
+ | Java HotSpot(TM) Client VM              |
+ +-----------------------------------------+
+
+
+=======================================================================
+ H   H  OOO  W   W       III TTTTT       W   W  OOO  RRRR  K   K  SSSS 
+ H   H O   O W   W        I    T         W   W O   O R   R K  K  S     
+ HHHHH O   O W W W        I    T         W W W O   O RRRR  KKK    SSS  
+ H   H O   O W W W        I    T         W W W O   O R  R  K  K      S 
+ H   H  OOO   W W        III   T          W W   OOO  R   R K   K SSSS  
+=======================================================================
+
+How does the shell work? It's a bit of a hack, to say the least! Essentially, it
+    - reads an expression from standard input
+    - surrounds the expression with some template code
+    - writes the code to a temporary file
+    - runs javac on that file
+    - dynamically loads the class
+    - invokes a method in the new class using reflection
+    - prints the object returned by this method
+
